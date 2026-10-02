@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BridgeScout — where in the world will your brand be loved?</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🌉 BridgeScout</div>
+    <div class="tag">A Qloo-powered agent that tells small consumer brands <b>where abroad</b> they'll be loved, <b>who</b> to partner with, and <b>why</b>.</div>
+    <div id="mode" class="mode"></div>
+  </header>
+  <div id="demo-banner" class="banner hidden">DEMO MODE — synthetic data, no Qloo key configured. Numbers are placeholders, not Qloo results.</div>
+  <main>
+    <section class="panel form">
+      <h2>1 · Describe your brand</h2>
+      <label>Brand <input id="brand" placeholder="Moonbun Studio" /></label>
+      <label>What you sell <textarea id="description" rows="2" placeholder="Designer blind-box toys…"></textarea></label>
+      <label>Goal <input id="goal" placeholder="First overseas pop-up + stockists" /></label>
+      <h2>2 · "We're like…" <small>brands / artists / shows your customers already love</small></h2>
+      <div id="refs"></div>
+      <button class="ghost" id="add-ref" type="button">+ add reference</button>
+      <h2>3 · Cities you're considering <small>(optional — the agent adds its own)</small></h2>
+      <input id="cities" placeholder="Los Angeles, London, Bangkok" />
+      <div class="row">
+        <button id="run" type="button">Scout markets →</button>
+        <select id="example"><option value="">Load example…</option></select>
+      </div>
+      <div id="trace" class="trace"></div>
+    </section>
+    <section class="panel out" id="out">
+      <div class="empty">Your launch brief appears here: ranked markets, a neighbourhood heatmap, stockists, co-brand and creator partners — every number linked to the Qloo request behind it.</div>
+    </section>
+  </main>
+  <footer>Built for the Qloo Agentic Hackathon · Qloo data = aggregate taste affinity, never individual profiling · <a href="https://github.com/" id="repo-link">source</a></footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
