@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BridgeScout — Qloo-powered go-global agent</title>
+  <style>
+    :root { --bg:#0b1020; --card:#151b2f; --fg:#e8ecf7; --muted:#9aa3b8; --accent:#7c9cff; --ok:#3ddc97; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:radial-gradient(1200px 600px at 20% -10%, #1a2450, var(--bg)); color:var(--fg); line-height:1.55; }
+    main { max-width:880px; margin:0 auto; padding:48px 20px 80px; }
+    h1 { font-size:2rem; margin:0 0 8px; }
+    .tag { color:var(--muted); font-size:1.05rem; margin-bottom:28px; }
+    .card { background:var(--card); border:1px solid #243055; border-radius:14px; padding:20px 22px; margin:16px 0; }
+    a { color:var(--accent); }
+    .row { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .btn { display:inline-block; background:var(--accent); color:#0b1020; text-decoration:none; font-weight:700; padding:10px 16px; border-radius:10px; }
+    .btn.ghost { background:transparent; color:var(--fg); border:1px solid #3a4670; }
+    code, pre { background:#0d1428; border-radius:8px; }
+    code { padding:2px 6px; }
+    pre { padding:14px; overflow:auto; font-size:0.9rem; }
+    img { max-width:100%; border-radius:12px; border:1px solid #243055; margin-top:12px; }
+    .pill { display:inline-block; background:#1d2a4a; color:var(--ok); padding:4px 10px; border-radius:999px; font-size:0.85rem; font-weight:600; }
+    ol { padding-left:1.2rem; }
+    li { margin:6px 0; }
+  </style>
+</head>
+<body>
+<main>
+  <span class="pill">Qloo Agentic Hackathon</span>
+  <h1>🌉 BridgeScout</h1>
+  <p class="tag">Tell it what your customers already love — BridgeScout uses <b>Qloo's cultural taste graph</b> to pick the first overseas city, neighbourhood, stockists, and co-brand partners.</p>
+
+  <div class="card">
+    <h2 style="margin-top:0">Live demo</h2>
+    <p id="demo-status">Primary demo (Render free tier). First load may take ~30–60s while the free instance wakes.</p>
+    <div class="row">
+      <a class="btn" id="demo-link" href="https://bridgescout.onrender.com">Open live demo →</a>
+      <a class="btn ghost" href="https://github.com/dongwei-polyred/bridgescout">GitHub repo</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">What it does</h2>
+    <ul>
+      <li>Resolves brand references via Qloo search</li>
+      <li>Scores candidate cities with destination + location affinity</li>
+      <li>Maps neighbourhood heatmaps and local partners (places, brands, artists, podcasts)</li>
+      <li>Demographics + cited launch brief — every claim links to evidence E1…En</li>
+    </ul>
+    <img src="screenshot-demo.png" alt="BridgeScout demo screenshot" />
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">Run locally (one-liner)</h2>
+    <pre>git clone https://github.com/dongwei-polyred/bridgescout.git
+cd bridgescout
+python3 -m venv .venv && . .venv/bin/activate
+pip install -r requirements-dev.txt
+cp .env.example .env   # add QLOO_API_KEY for live mode
+set -a; . ./.env; set +a
+uvicorn bridgescout.app:app --reload --port 8000
+# open http://localhost:8000?autorun=1</pre>
+    <p>Without <code>QLOO_API_KEY</code> the app runs in labelled <b>DEMO mode</b> with synthetic data.</p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0">Deploy your own (Render)</h2>
+    <ol>
+      <li>New → Blueprint → select <code>dongwei-polyred/bridgescout</code> (uses <code>render.yaml</code> + Dockerfile)</li>
+      <li>Set secret <code>QLOO_API_KEY</code> (optional: <code>LLM_API_KEY</code> / <code>LLM_BASE_URL</code> / <code>LLM_MODEL</code>)</li>
+      <li>Deploy — health check at <code>/api/health</code></li>
+    </ol>
+  </div>
+
+  <p style="color:var(--muted);font-size:0.9rem">MIT License · Built for <a href="https://qloo.devpost.com/">Qloo Agentic Hackathon</a> · Aggregate taste only, no personal data.</p>
+</main>
+</body>
+</html>
